@@ -6,6 +6,9 @@
 
 将代码18-287行均复制到m5stack_core_s3.cc中，放在文件起始位置即可
 修改mqtt_message_handler_cb()函数，示例如下：
+
+
+
 // Handle received MQTT messages
 static esp_err_t mqtt_message_handler_cb(esp_mqtt_event_handle_t event) {
     std::string mac_prefix = generate_mac_prefix();
@@ -54,6 +57,8 @@ static esp_err_t mqtt_message_handler_cb(esp_mqtt_event_handle_t event) {
 后修改原cplilot.cc中的Copilot类
 然后添加mcpaddtool函数如下：
 
+   
+   
     void InitializeCopilotTools() {                  //add this function for Cocube
         
         wifi_event_group = xEventGroupCreate();
