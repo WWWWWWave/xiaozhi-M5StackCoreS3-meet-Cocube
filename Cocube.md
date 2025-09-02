@@ -1,4 +1,6 @@
 参考如下：https://www.hackster.io/cocube/cocube-meets-m5-cores3-an-ai-chat-robot-52be0f
+本人纯小白，代码中可能有多处错误，请多多指正
+
 由于示例中使用IOT功能，在目前的mcp版本中已经弃用，因此需要对代码进行修改，并将其直接加入到小智M5StackCoreS3的板级初始化文件中
 源代码请见Copilot.cc
 
@@ -49,7 +51,7 @@ static esp_err_t mqtt_message_handler_cb(esp_mqtt_event_handle_t event) {
 
 
 
-
+后修改原cplilot.cc中的Copilot类
 然后添加mcpaddtool函数如下：
 
     void InitializeCopilotTools() {                  //add this function for Cocube
@@ -66,8 +68,8 @@ static esp_err_t mqtt_message_handler_cb(esp_mqtt_event_handle_t event) {
         CoCube cocube;
         auto& mcp_server = McpServer::GetInstance();  
 
-        //获取位置信息
-        mcp_server.AddTool(
+        //获取位置信息，这个功能目前可能有问题，小智会不停地接受Cocube机器人位置信息
+        mcp_server.AddTool(     
             "Cocube.get_position",  
             "Get robot current position and orientation",  
             PropertyList(),  
@@ -130,7 +132,7 @@ static esp_err_t mqtt_message_handler_cb(esp_mqtt_event_handle_t event) {
                 return true;
             });
 
-        // Register Move to landmark method
+        // Register Move to landmark method，目前还没有搞懂地标是什么
         mcp_server.AddTool(
             "Cocube.Move to landmark",
              "Control robot to move to a landmark building.\n"
